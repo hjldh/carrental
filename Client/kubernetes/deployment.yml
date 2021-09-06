@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reservation
+  name: client
   labels:
-    app: reservation
+    app: client
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: reservation
+      app: client
   template:
     metadata:
       labels:
-        app: reservation
+        app: client
     spec:
       containers:
-        - name: reservation
-          image: userlee.azurecr.io/reservation:v1
+        - name: client
+          image: userlee.azurecr.io/client:v1
           ports:
             - containerPort: 8080
           readinessProbe:

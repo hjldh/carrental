@@ -25,7 +25,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: Contract
+          group: client
           destination: carrental
           contentType: application/json
         event-out:
@@ -33,30 +33,11 @@ spring:
           contentType: application/json
 
 logging:
-  path: /log
-  file: contract.log
   level:
     org.hibernate.type: trace
     org.springframework.cloud: debug
-
 server:
-  port: 8081
-
-# pay service 호출 주소
-api:
-  url:
-    pay: http://localhost:8082
-# circuit breaker 설정 start
-
-feign:
-  hystrix:
-    enabled: false
-hystrix:
-  command:
-    default:
-      execution.isolation.thread.timeoutInMilliseconds: 610
-# circuit breaker 설정 end
-
+  port: 8085
 ---
 
 spring:
@@ -76,24 +57,9 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: Contract
+          group: client
           destination: carrental
           contentType: application/json
         event-out:
           destination: carrental
-
-# pay service 호출 주소
-api:
-  url:
-    pay: http://Pay:8080
-# circuit breaker 설정 start
-
-feign:
-  hystrix:
-    enabled: false
-
-hystrix:
-  command:
-    default:
-      execution.isolation.thread.timeoutInMilliseconds: 610
-# circuit breaker 설정 end
+          contentType: application/json
